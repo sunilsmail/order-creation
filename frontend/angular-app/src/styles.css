@@ -1,0 +1,9 @@
+* { box-sizing: border-box; font-family: Arial, sans-serif; }
+body { margin: 0; background: #f6f8fb; color: #202124; }
+.container { max-width: 900px; margin: 30px auto; background: white; border-radius: 8px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+button { background: #0b57d0; color: white; border: none; border-radius: 6px; padding: 10px 16px; cursor: pointer; }
+button:disabled { opacity: .6; cursor: not-allowed; }
+.badge { display: inline-block; border-radius: 999px; padding: 4px 10px; background: #e8f0fe; color: #0b57d0; font-size: 12px; }
+.status-ok { color: #137333; }
+.status-fail { color: #c5221f; }
+ul { padding-left: 20px; }
