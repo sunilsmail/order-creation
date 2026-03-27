@@ -30,14 +30,16 @@ export class CheckoutComponent {
   loading = false;
   error = '';
   lastOrderId = '';
-  readonly userId = this.authService.getUserId();
+  userId = '';
 
   constructor(
     private api: ApiService,
     private authService: AuthService,
     private socketService: SocketService,
     private router: Router
-  ) {}
+  ) {
+    this.userId = this.authService.getUserId();
+  }
 
   async placeOrder(): Promise<void> {
     this.loading = true;
@@ -49,7 +51,8 @@ export class CheckoutComponent {
 
       const order = await this.api.createOrder(token);
       this.lastOrderId = order.orderId;
-      this.socketService.joinOrder(order.orderId);
+      // Note: Don't join order here - Status component handles that
+      // Since we immediately navigate to status page anyway
 
       await this.router.navigate(['/status', order.orderId]);
     } catch (error: any) {

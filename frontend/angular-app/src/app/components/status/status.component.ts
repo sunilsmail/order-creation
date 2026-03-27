@@ -44,7 +44,9 @@ export class StatusComponent implements OnInit, OnDestroy {
 
     this.sub = this.socketService.updates$.subscribe((event) => {
       if (event.orderId === this.orderId) {
+        // Add event to updates if it's for this order
         this.updates = [...this.updates, event];
+        console.log(`✓ Event received: ${event.status}`);
       }
     });
   }
@@ -54,7 +56,7 @@ export class StatusComponent implements OnInit, OnDestroy {
   }
 
   isSuccess(status: string): boolean {
-    return ['PRODUCT_AVAILABLE', 'PRICE_CONFIRMED', 'LOCATION_VALID', 'PAYMENT_SUCCESS'].includes(status);
+    return ['PRODUCT_AVAILABLE', 'PRICE_CONFIRMED', 'LOCATION_VALID', 'PAYMENT_SUCCESS', 'ORDER_CREATED'].includes(status);
   }
 
   isFailure(status: string): boolean {
